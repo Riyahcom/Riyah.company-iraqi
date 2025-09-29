@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>طلب شراء مروحة - شركة الرياح</title>
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 10px;
+      background: linear-gradient(135deg, #fbc305 0%, #f8d568 100%);
+      color: #333;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 12px;
+      background: linear-gradient(to right, #000000, #333333);
+      padding: 8px;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 12px;
+      border: 1px solid #fbc305;
+    }
+
+    h1 {
+      text-align: center;
+      color: #000;
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 3px;
+      display: block;
+      font-size: 13px;
+      color: #333;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 6px;
+      margin-bottom: 5px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      font-size: 13px;
+      box-sizing: border-box;
+    }
+
+    .phone-note {
+      font-size: 11px;
+      color: #d32f2f;
+      margin-bottom: 10px;
+      display: block;
+      text-align: center;
+      background-color: #ffebee;
+      padding: 5px;
+      border-radius: 4px;
+    }
+
+    .payment-method {
+      background: #f5f5f5;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .free-shipping-note {
+      text-align: center;
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 8px;
+      border-radius: 5px;
+      margin: 10px 0;
+      font-weight: bold;
+      border: 1px solid #4caf50;
+    }
+
+    /* قطعة العرض والسعر */
+    .offer-box {
+      text-align: center;
+      padding: 15px;
+      background: linear-gradient(135deg, #ff9800, #ffcc80); /* برتقالي متدرج */
+      border: 2px solid #e65100;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .offer-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .old-price {
+      font-size: 18px;
+      color: #f44336;
+      text-decoration: line-through;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .new-price {
+      font-size: 28px;
+      font-weight: bold;
+      color: #1b5e20;
+      background: #fff;
+      padding: 5px 12px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .countdown {
+      font-size: 16px;
+      font-weight: bold;
+      color: #000;
+      background: #fff;
+      padding: 5px 10px;
+      display: inline-block;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .submit-btn {
+      background: linear-gradient(to right, #000, #333);
+      color: #fff;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .company-info {
+      background: #fff;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 12px;
+      border: 1px solid #fbc305;
+    }
+
+    .company-info h3 {
+      text-align: center;
+      color: #000;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed #eee;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h2>شركة الرياح للتسوق الإلكتروني</h2>
+  </div>
+
+  <div class="form-container">
+    
+    <!-- العرض الخاص والسعر -->
+    <div class="offer-box">
+      <div class="offer-title">✨ عرض خاص لفترة محدودة ✨</div>
+      <span class="old-price">70,000 دينار عراقي</span>
+      <span class="new-price">48,000 دينار عراقي</span>
+      <div class="countdown" id="countdown">00:00:00</div>
+    </div>
+
+    <h1>طلب شراء</h1>
+
+    <form id="orderForm">
+      <label for="name">الاسم بالكامل *</label>
+      <input type="text" id="name" required placeholder="أدخل اسمك">
+
+      <label for="address">العنوان *</label>
+      <textarea id="address" rows="2" required placeholder="المنطقة - الشارع - المدينة"></textarea>
+
+      <label for="phone">رقم الهاتف الأساسي *</label>
+      <input type="tel" id="phone" required placeholder="07XXXXXXXX">
+      <span class="phone-note">يجب أن يكون رقم الهاتف شغالاً 24 ساعة</span>
+
+      <label for="phone2">رقم هاتف إضافي (اختياري)</label>
+      <input type="tel" id="phone2" placeholder="07XXXXXXXX">
+
+      <div class="payment-method">
+        <span>طريقة الدفع: الدفع عند الاستلام</span>
+      </div>
+
+      <div class="free-shipping-note">
+        🚚 التوصيل مجاني لجميع محافظات العراق
+      </div>
+
+      <button type="button" class="submit-btn" onclick="sendToWhatsApp()">إرسال الطلب عبر واتساب</button>
+    </form>
+  </div>
+
+  <div class="company-info">
+    <h3>معلومات الشركة</h3>
+    <div class="info-item">
+      <span>رقم الاتصال:</span>
+      <span>07778610036</span>
+    </div>
+    <div class="info-item">
+      <span>البريد الإلكتروني:</span>
+      <span>riyah.comiq@gmail.com</span>
+    </div>
+    <div class="info-item">
+      <span>جهة التوثيق:</span>
+      <span>وزارة التجارة العراقية</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>© 2023 شركة الرياح للتسوق الإلكتروني. جميع الحقوق محفوظة.</p>
+  </div>
+
+  <script>
+    function sendToWhatsApp() {
+      let name = document.getElementById("name").value;
+      let address = document.getElementById("address").value;
+      let phone = document.getElementById("phone").value;
+      let phone2 = document.getElementById("phone2").value;
+
+      let total = "48,000 دينار عراقي (بدلاً من 70,000)";
+
+      let message = `طلب شراء:جهاز افطار صباحي سيلفر كرست\nالاسم: ${name}\nالعنوان: ${address}\nالهاتف الأساسي: ${phone}\n${phone2 ? 'الهاتف الإضافي: ' + phone2 + '\n' : ''}طريقة الدفع: الدفع عند الاستلام\nالإجمالي: ${total}\n\nملاحظة: سوف يتم توصيل طلبك خلال 72 ساعة...`;
+
+      let url = "https://wa.me/9647778610036?text=" + encodeURIComponent(message);
+      window.open(url, "_blank");
+    }
+
+    // العداد التنازلي (48 ساعة من الآن)
+    function startCountdown(durationHours) {
+      let countdownElement = document.getElementById("countdown");
+      let targetTime = new Date().getTime() + durationHours * 60 * 60 * 1000;
+
+      setInterval(function () {
+        let now = new Date().getTime();
+        let distance = targetTime - now;
+
+        if (distance <= 0) {
+          countdownElement.innerHTML = "انتهى العرض";
+          return;
+        }
+
+        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownElement.innerHTML =
+          "⏳ الوقت المتبقي: " +
+          (hours < 10 ? "0" + hours : hours) + ":" +
+          (minutes < 10 ? "0" + minutes : minutes) + ":" +
+          (seconds < 10 ? "0" + seconds : seconds);
+      }, 1000);
+    }
+
+    // بدء العداد لـ 48 ساعة
+    startCountdown(48);
+  </script>
+
+</body>
+</html>
